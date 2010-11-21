@@ -1,0 +1,45 @@
+
+
+<%def name="flashbox()">
+    <div id="flashbox">
+        % for type in ('info','warning','error'):
+            % for info in session.get(type,[]):
+                <div class="${type}">${info}</div>
+            % endfor
+            <% session[type] = [] %>
+        % endfor
+    </div>
+</%def>
+
+
+
+<%def name="simple_form(action,method,fields=[],submit_value='Submit',**kwargs)">
+    <form action="${action}" method="${method}"
+    % for k,v in kwargs.iteritems():
+        ${k}="${v}"
+    % endfor
+    >
+    % for f in fields:
+        ${simple_field(*f)}
+    % endfor
+    <br>
+    <input type="submit" name="action" value="${submit_value}"/>
+    </form>
+</%def>
+
+
+<%def name="simple_field(label,type,name,value=None,**kwargs)">
+    <div>
+        <label for="${type}_${name}">
+            ${label}:
+        </label>
+        <input id="${type}_${name}" type="${type}"
+                name="${name}" value="${value or ''}"
+        % for k,v in kwargs.iteritems():
+            ${k}="${v}"
+        % endfor
+        />
+    </div>
+</%def>
+
+

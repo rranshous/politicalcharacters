@@ -1,0 +1,9 @@
+<%inherit file="/shows/base.html"/>
+
+<%def name="title()">
+    Shows
+</%def>
+
+%for show in shows:
+    ${show.name} - ${show.description}
+% endfor
