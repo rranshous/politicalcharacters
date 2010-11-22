@@ -180,4 +180,13 @@ class Root:
     @cherrypy.expose
     @template_wrapper('/index.html')
     def index(self):
-        return
+        top_characters = m.Character.query. \
+                            order_by(
+                                m.Character.total_vote_count.desc()). \
+                            limit(10).distinct().all()
+        top_shows = m.Show.query.join('characters'). \
+                            order_by( 
+                                m.Character.total_vote_count.desc()). \
+                            limit(10).distinct().all()
+        return targs(top_characters=top_characters,
+                     top_shows=top_shows)

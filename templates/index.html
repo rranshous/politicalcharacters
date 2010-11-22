@@ -1,6 +1,18 @@
 <%inherit file="/base.html"/>
 
-todo:
+<h3>Top Characteres:</h3>
+<ul>
+% for character in top_characters:
+    <li>${self.characters.long_link(character)}</li>
+% endfor
+    <li><a href="/character/list">All Characters</a></li>
+</ul>
 
-show here top voted on characters and list of all shows
+<h3>Top Shows</h3>
+<ul>
+% for show in top_shows:
+    <li>${self.shows.long_link(show)}</li>
+% endfor
+    <li><a href="/show/list">All Shows</a></li>
+</ul>
 
