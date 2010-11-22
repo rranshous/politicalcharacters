@@ -1,0 +1,14 @@
+<%inherit file="/characters/base.html"/>
+
+% if character:
+
+    ${character.name}
+    <br>
+    <img src="/img/${character.picture_path}"/>
+    <br>
+
+    <a href="/characters/vote/${character.id}/liberal">Liberal</a>
+    <a href="/characters/vote/${character.id}/conservative">Conservative</a>
+
+
+% endif

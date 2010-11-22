@@ -1,0 +1,24 @@
+<%inherit file="/characters/base.html"/>
+
+<form action="/character/create" method="POST" enctype="multipart/form-data">
+    <label for="name">Name:</label>
+    <input id="name" name="name" type="text"/>
+
+    <label for="description">Description:</label>
+    <input id="description" name="description" type="text"/>
+
+    <label for="show">Show:</label>
+    <select name="show_id">
+        % for show in shows:
+            <option value="${show.id}">${show.name}</option>
+        % endfor
+    </select>
+
+    <label for="image">Image:</label>
+    <input type="file" name="image" id="image"/>
+
+    <label for="image_url">Image url:</label>
+    <input type="text" id="image_url" name="image_url"/>
+
+    <input type="submit" name="action" value="Create"/>
+</form>

@@ -1,0 +1,13 @@
+<%inherit file="/shows/base.html"/>
+
+<%def name="title()">
+% if show:
+${show.name}
+% else:
+Error
+% endif
+</%def>
+
+${show.name if show else ''}
+<br/>
+${show.description if show else ''}
