@@ -1,9 +1,11 @@
 <%inherit file="/shows/base.html"/>
 
 <%def name="title()">
-${return "Shows"}
+Shows
 </%def>
 
-%for show in shows:
-    ${show.name} - ${show.description}
+<ul>
+% for show in shows:
+    <li>${self.shows.long_link(show)}</li>
 % endfor
+</ul>

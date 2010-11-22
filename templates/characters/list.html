@@ -1,5 +1,15 @@
 <%inherit file="/characters/base.html"/>
 
 <%def name="title()">
-    ${return "Characters"}
+Characters
 </%def>
+
+
+% for show in shows:
+    <h3>${self.shows.long_link(show)}</h3>
+    <ul>
+    % for character in show.characters:
+        <li>${self.characters.long_link(character)}</li>
+    % endfor
+    </ul>
+% endfor

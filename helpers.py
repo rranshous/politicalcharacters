@@ -2,6 +2,7 @@ import cherrypy
 from cherrypy import HTTPRedirect, HTTPError
 import os.path
 from tempfile import NamedTemporaryFile
+from subprocess import call, PIPE
 
 def add_flash(msg_type,msg=None):
     if not msg:
@@ -39,7 +40,7 @@ def _save_form_data(file_data,save_root,file_ext=None,prefix=''):
     fh.close()
     return path
 
-def create_thumbnail(self,img_path,out_root,w,h='',
+def create_thumbnail(img_path,out_root,w,h='',
                           overwrite=False):
     """ creats a thumbnail of the image @ the given size,
         writes the thumbnail to the drive w/ size as

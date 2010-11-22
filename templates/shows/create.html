@@ -1,10 +1,14 @@
 <%inherit file="/shows/base.html"/>
 
 
-<form action="/show/create/" method="POST">
+<form enctype="multipart/form-data" action="/show/create/" method="POST">
     <label for="name"/>Name:</label>
     <input type="string" id="name" name="name"/></label>
     <label for="description"/>Description:</label>
     <input type="string" id="description" name="description"/>
+    <label for="image">Image:</label>
+    <input type="file" name="image" id="image"/>
+    <label for="image_url">Image url:</label>
+    <input type="text" id="image_url" name="image_url"/>
     <input type="submit" value="Create" name="action"/>
 </form>

@@ -1,14 +1,41 @@
 <%inherit file="/characters/base.html"/>
 
+<style>
+    .character_box {
+        text-align: center;
+        vertical-align: center;
+    }
+    .character_box > div {
+        width: 33%;
+        float: left;
+    }
+    .liberal_vote {
+        color: blue;
+    }
+    .conservative_vote {
+        color: red;
+    }
+</style>
+
 % if character:
 
-    ${character.name}
-    <br>
-    <img src="/img/${character.picture_path}"/>
-    <br>
-
-    <a href="/characters/vote/${character.id}/liberal">Liberal</a>
-    <a href="/characters/vote/${character.id}/conservative">Conservative</a>
-
-
+<div class="character_box">
+    <div class="left">
+        <img src="/character/graph/${character.id}"/>
+    </div>
+    <div class="center">
+        ${self.characters.link(character)} from ${self.shows.link(character.show)}
+        <br>
+        <img src="/thumbnail/${character.picture_path}?size=200"/>
+        <br>
+        ${character.total_vote_count or '0'} votes
+    </div>
+    <div class="right">
+        <p>Vote!</p>
+        <a class="liberal_vote"
+           href="/character/vote/${character.id}/liberal">Liberal</a>
+        <a class="conservative_vote"
+           href="/character/vote/${character.id}/conservative">Conservative</a>
+    </div>
+</div>
 % endif

@@ -8,6 +8,21 @@ Error
 % endif
 </%def>
 
-${show.name if show else ''}
-<br/>
-${show.description if show else ''}
+% if show:
+
+    <div class="show_details">
+        <h1>${show.name}</h1>
+        <h2>${show.description}</h2>
+
+        <img src="/thumbnail/${show.picture_path}?size=200"/>
+    </div>
+
+    <div class="characters">
+        <ul>
+        % for character in show.characters:
+            <li>${self.characters.long_link(character)}</li>
+        % endfor
+        </ul>
+    </div>
+
+% endif
