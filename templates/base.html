@@ -6,6 +6,30 @@
 <html>
 <head>
     <title>${self.title()}</title>
+    <style>
+        .thumbnail_link {
+            text-align: center;
+        }
+        .thumbnail_container * {
+            display: inline;
+        }
+        .thumbnail_container {
+            position: relative;
+        }
+        .thumbnail_container .name {
+            position: absolute;
+            left: 3px;
+            padding-top: 2px;
+            color: black;
+            text-shadow: 2px -1px 1px white;
+        }
+        .thumbnail_link img {
+            border: none;
+        }
+        .thumbnail_link {
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
     ${self.views.flashbox()}

@@ -1,3 +1,9 @@
+<%def name="thumbnail_link(obj)">
+<%
+    str_type = type(obj).__name__.lower()
+%>
+<div class="link_container thumbnail_container"><a class="${str_type} thumbnail_link" href="/${str_type}/${obj.id}" title="${obj.description}"><img src="/thumbnail/${obj.picture_path}"/></a><a class="${str_type} thumbnail_link name" href="/${str_type}/${obj.id}" title="${obj.description}">${obj.name}</a></div>
+</%def>
 
 
 <%def name="flashbox()">

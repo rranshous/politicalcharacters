@@ -1,18 +1,24 @@
 <%inherit file="/base.html"/>
 
-<h3>Top Characteres:</h3>
-<ul>
+<style>
+    
+</style>
+
+<h3>Top Characteres</h3>
+<div class="thumbnail_link_container">
 % for character in top_characters:
-    <li>${self.characters.long_link(character)}</li>
+    ${self.views.thumbnail_link(character)}</li>
 % endfor
-    <li><a href="/character/list">All Characters</a></li>
-</ul>
+</div>
+
+<a href="/character/list">All Characters</a>
+
 
 <h3>Top Shows</h3>
-<ul>
+<div class="thumbnail_link_container">
 % for show in top_shows:
-    <li>${self.shows.long_link(show)}</li>
+    ${self.views.thumbnail_link(show)}
 % endfor
-    <li><a href="/show/list">All Shows</a></li>
-</ul>
+</div>
+<a href="/show/list">All Shows</a>
 

@@ -4,8 +4,7 @@
 Shows
 </%def>
 
-<ul>
 % for show in shows:
-    <li>${self.shows.long_link(show)}</li>
+    ${self.views.thumbnail_link(show)}
 % endfor
 </ul>
