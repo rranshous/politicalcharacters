@@ -21,7 +21,7 @@
 
 <div class="character_box">
     <div class="left">
-        <img src="/character/graph/${character.id}"/>
+        <img src="/character/graph/${character.id}?v=${character.total_vote_count}"/>
     </div>
     <div class="center">
         ${self.characters.link(character)} from ${self.shows.link(character.show)}

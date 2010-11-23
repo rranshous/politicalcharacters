@@ -99,7 +99,7 @@ class Character:
         redirect('/character/%s' % character.id)        
 
     @cherrypy.expose
-    def graph(self,id):
+    def graph(self,id,**kwargs):
         cherrypy.log('graph: %s' % id)
         character = m.Character.get(id)
         if not character:
