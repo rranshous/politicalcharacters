@@ -3,6 +3,13 @@ from cherrypy import HTTPRedirect, HTTPError
 import os.path
 from tempfile import NamedTemporaryFile
 from subprocess import call, PIPE
+from decorator import decorator
+
+@decorator
+def admin(f,*args,**kwargs):
+    cherrypy.tools.auth_basic = True
+    return f(*args,**kwargs)
+
 
 def add_flash(msg_type,msg=None):
     if not msg:

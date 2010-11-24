@@ -3,3 +3,4 @@ syntax: glob
 *.swp
 *.swo
 production.db
+cherrypy/

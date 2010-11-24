@@ -2,7 +2,7 @@ import helpers as e # exceptions
 import helpers as h
 from templates import template_wrapper, TemplateArgs as targs, render
 import helpers as e
-from helpers import redirect, save_form_data, create_thumbnail
+from helpers import redirect, save_form_data, create_thumbnail, admin
 import cherrypy
 import models as m
 from urllib2 import urlopen
@@ -12,7 +12,7 @@ class Show:
 
     @cherrypy.expose
     def index(self):
-        redirect('/shows/list')
+        redirect('/show/list')
 
     @cherrypy.expose
     @template_wrapper('/shows/list.html')
@@ -96,7 +96,7 @@ class Character:
             raise e.Validation('What is %s?' % direction)
         character.total_vote_count += 1
         m.session.commit()
-        redirect('/character/%s' % character.id)        
+        redirect('/character/%s' % character.id)
 
     @cherrypy.expose
     def graph(self,id,**kwargs):
