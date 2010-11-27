@@ -7,6 +7,27 @@
 <head>
     <title>${self.title()}</title>
     <style>
+        body {
+            background: #574431;
+            margin: 0;
+            padding: 0;
+        }
+        #page_wrapper {
+            position: absolute;
+            top: 0;
+            width: 1000px;
+            left: 50%;
+            margin-left: -500px;
+            background: #ad9b8a;
+            padding: 10px;
+        }
+        #header {
+            text-align: center;
+            font-size: 1.2em;
+        }
+        #header .name {
+            font-size: 1.4em;
+        }
         .thumbnail_link {
             text-align: center;
         }
@@ -32,9 +53,16 @@
     </style>
 </head>
 <body>
-    ${self.views.flashbox()}
+    <div id="page_wrapper">
+        <div id="header">
+            <div class="name">PoliPotato</div>
+            <div class="slogan">let your couch be your guide</div>
+        </div>
 
-    ${self.body()}
+        ${self.views.flashbox()}
+
+        ${self.body()}
+    </div>
 </body>
 </html>
 
