@@ -29,10 +29,52 @@ class Show:
         return targs(show=show)
 
     @cherrypy.expose
+    @template_wrapper('/shows/edit.html')
+    def update(self,show_id=None,name=None,description=None,
+                    image=None,image_url=None,action=None):
+
+        cherrypy.log('show_is: %s'%show_id)
+        show = m.Show.get(show_id)
+
+        if not show:
+            raise e.Validation('Show not found')
+
+        if action:
+            if not name:
+                raise e.Validation('Name must be defined')
+
+            show.name = name
+            show.description = description
+
+            if image is not None and len(image.filename):
+                cherrypy.log('has image: %s' % image.filename)
+                image_path = save_form_data(image,
+                                            cherrypy.config.get('image_root'),
+                                           'character_')
+                show.picture_path = image_path
+            elif image_url:
+                cherrypy.log('has image url')
+                try:
+                    image_path = _save_form_data(urlopen(image_url).read(),
+                                            cherrypy.config.get('image_root'),
+                                            image_url.rsplit('.',1)[-1],
+                                            'character_')
+                    show.picture_path = image_path
+                except:
+                    cherrypy.log('bad download')
+                    image_path = None
+
+            m.session.commit()
+            redirect('/show/%s' % show.id)
+
+        return targs(show=show)
+
+    @cherrypy.expose
     @template_wrapper('/shows/create.html')
     def create(self,name=None,description=None,image=None,
                     image_url=None,action=None):
         if action:
+
             if not name:
                 raise e.Validation('Name must be defined')
 
@@ -41,24 +83,22 @@ class Show:
                 image_path = save_form_data(image,
                                             cherrypy.config.get('image_root'),
                                            'character_')
+
             elif image_url:
                 cherrypy.log('has image url')
                 try:
                     image_path = _save_form_data(urlopen(image_url).read(),
-                                            cherrpy.config.get('image_root'),
+                                            cherrypy.config.get('image_root'),
                                             image_url.rsplit('.',1)[-1],
                                             'character_')
                 except:
                     cherrypy.log('bad download')
                     image_path = None
 
-            else:
-                image_path = None
-
             show = m.Show(name=name,
                           description=description,
                           picture_path=os.path.basename(image_path))
-            
+
             m.session.add(show)
             m.session.commit()
             redirect('/show/%s'%show.id)
@@ -133,7 +173,7 @@ class Character:
                 cherrypy.log('has image url')
                 try:
                     image_path = _save_form_data(urlopen(image_url).read(),
-                                            cherrpy.config.get('image_root'),
+                                            cherrypy.config.get('image_root'),
                                             image_url.rsplit('.',1)[-1],
                                             'character_')
                 except:

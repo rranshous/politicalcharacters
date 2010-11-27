@@ -8,14 +8,16 @@
     }
 </style>
 
-<form enctype="multipart/form-data" action="/show/create/" method="POST">
-    <label for="name"/>Name:</label>
-    <input type="string" id="name" name="name"/><br>
+<form enctype="multipart/form-data" action="/show/update/" method="POST">
+    <label for="name">Name:</label>
+    <input type="string" id="name" name="name" value="${show.name}"/><br/>
     <label for="description"/>Description:</label>
-    <input type="string" id="description" name="description"/><br/>
+    <input type="string" id="description" name="description" value="${show.description}"/><br/>
     <label for="image">Image:</label>
     <input type="file" name="image" id="image"/><br/>
     <label for="image_url">Image url:</label>
     <input type="text" id="image_url" name="image_url"/><br/><br/>
-    <input type="submit" value="Create" name="action"/>
+    <input type="submit" value="Update" name="action"/>
+    <input type="hidden" value="${show.id}" name="show_id"/>
 </form>
+
